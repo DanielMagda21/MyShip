@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".LoginFragment">
+    <item
+        android:id="@+id/Main"
+        android:orderInCategory="100"
+        android:title="@string/Main"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/package_archives"
+        android:orderInCategory="100"
+        android:title="@string/Package_archives"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/About"
+        android:orderInCategory="100"
+        android:title="@string/About"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/Logout"
+        android:orderInCategory="100"
+        android:title="@string/Logout"
+        app:showAsAction="never" />
+
+</menu>

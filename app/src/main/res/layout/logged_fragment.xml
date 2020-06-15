@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoggedFragment">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15">
+
+        <LinearLayout
+            android:id="@+id/Packagelayout1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="@dimen/LinearPackageDim1"
+                android:layout_height="@dimen/LinearPackageDim2"
+                android:text="@string/PackageName" />
+
+            <TextView
+                android:id="@+id/PackageNameData"
+                android:layout_width="@dimen/LinearPackageDim3"
+                android:layout_height="@dimen/LinearPackageDim2" />
+
+            <TextView
+                android:layout_width="@dimen/LinearPackageDim1"
+                android:layout_height="@dimen/LinearPackageDim2"
+                android:text="@string/PackageStatus" />
+
+            <TextView
+                android:id="@+id/PackageStatusData"
+                android:layout_width="@dimen/LinearPackageDim3"
+                android:layout_height="@dimen/LinearPackageDim2" />
+
+            <TextView
+                android:layout_width="@dimen/LinearPackageDim1"
+                android:layout_height="@dimen/LinearPackageDim2"
+                android:text="@string/Packagesender" />
+
+            <TextView
+                android:id="@+id/PackagesenderData"
+                android:layout_width="@dimen/LinearPackageDim3"
+                android:layout_height="@dimen/LinearPackageDim2" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="78dp"
+                android:contentDescription="@string/PackageImage"
+                android:src="@drawable/localship" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.50">
+
+        <LinearLayout
+            android:id="@+id/Packagelayout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="@dimen/LinearPackageDim1"
+                android:layout_height="@dimen/LinearPackageDim2"
+                android:text="@string/PackageName" />
+
+            <TextView
+                android:id="@+id/OrderName2"
+                android:layout_width="@dimen/LinearPackageDim3"
+                android:layout_height="@dimen/LinearPackageDim2" />
+
+            <TextView
+                android:layout_width="@dimen/LinearPackageDim1"
+                android:layout_height="@dimen/LinearPackageDim2"
+                android:text="@string/PackageStatus" />
+
+            <TextView
+                android:id="@+id/OrderStatus2"
+                android:layout_width="@dimen/LinearPackageDim3"
+                android:layout_height="@dimen/LinearPackageDim2" />
+
+            <TextView
+                android:layout_width="@dimen/LinearPackageDim1"
+                android:layout_height="@dimen/LinearPackageDim2"
+                android:text="@string/Packagesender" />
+
+            <TextView
+                android:id="@+id/OrderReciver2"
+                android:layout_width="@dimen/LinearPackageDim3"
+                android:layout_height="@dimen/LinearPackageDim2" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="78dp"
+                android:contentDescription="@string/PackageImage"
+                android:src="@drawable/localship" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.85">
+
+        <LinearLayout
+            android:id="@+id/Packagelayout3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="@dimen/LinearPackageDim1"
+                android:layout_height="@dimen/LinearPackageDim2"
+                android:text="@string/PackageName" />
+
+            <TextView
+                android:id="@+id/PackageNameData3"
+                android:layout_width="@dimen/LinearPackageDim3"
+                android:layout_height="@dimen/LinearPackageDim2" />
+
+            <TextView
+                android:layout_width="@dimen/LinearPackageDim1"
+                android:layout_height="@dimen/LinearPackageDim2"
+                android:text="@string/PackageStatus" />
+
+            <TextView
+                android:id="@+id/PackageStatusData3"
+                android:layout_width="@dimen/LinearPackageDim3"
+                android:layout_height="@dimen/LinearPackageDim2" />
+
+            <TextView
+                android:layout_width="@dimen/LinearPackageDim1"
+                android:layout_height="@dimen/LinearPackageDim2"
+                android:text="@string/Packagesender" />
+
+            <TextView
+                android:id="@+id/PackagesenderData3"
+                android:layout_width="@dimen/LinearPackageDim3"
+                android:layout_height="@dimen/LinearPackageDim2" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="78dp"
+                android:contentDescription="@string/PackageImage"
+                android:src="@drawable/localship" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Your_Shipments"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.50"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

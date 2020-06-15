@@ -1,0 +1,6 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="LinearPackageDim1">120dp</dimen>
+    <dimen name="LinearPackageDim2">25dp</dimen>
+    <dimen name="LinearPackageDim3">200dp</dimen>
+</resources>
