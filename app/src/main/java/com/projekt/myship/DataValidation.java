@@ -3,9 +3,7 @@ package com.projekt.myship;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * The type Data validation.
- */
+
 public class DataValidation {
     private String UserName;
     private String Password;
@@ -16,90 +14,54 @@ public class DataValidation {
     private String ID;
     private String Sender;
 
-    /**
-     * Sets user name.
-     *
-     * @param UserName the user name
-     */
+
     ///Setter Login UserName
     void setUserName(String UserName) {
         this.UserName = UserName;
     }
 
-    /**
-     * Sets password.
-     *
-     * @param Password the password
-     */
+
     ///Setter Login Password
     void setPassword(String Password) {
         this.Password = Password;
     }
 
-    /**
-     * Sets r fname.
-     *
-     * @param RFname the r fname
-     */
+
     ///Setter Register FirstName
     void setRFname(String RFname) {
         this.RFname = RFname;
     }
 
-    /**
-     * Sets r lname.
-     *
-     * @param RLname the r lname
-     */
+
     ///Setter Register LastName
     void setRLname(String RLname) {
         this.RLname = RLname;
     }
 
-    /**
-     * Sets r password.
-     *
-     * @param RPassword the r password
-     */
+
     ///Setter Register Password
     void setRPassword(String RPassword) {
         this.RPassword = RPassword;
     }
 
-    /**
-     * Sets number.
-     *
-     * @param Number the number
-     */
+
     ///Setter Number
     void setNumber(String Number) {
         this.Number = Number;
     }
 
-    /**
-     * Sets id.
-     *
-     * @param ID the id
-     */
+
     void setID(String ID) {
         this.ID = ID;
     }
 
-    /**
-     * Sets sender.
-     *
-     * @param Sender the sender
-     */
+
     ///Setter Sender
     void setSender(String Sender) {
         this.Sender = Sender;
     }
 
-    /**
-     * Login data check boolean.
-     *
-     * @return the boolean
-     */
+
     /// Using Regular Expression to check Data from Login Fragment
     /// Result True if both text inputs are true
     boolean LoginDataCheck() {
@@ -112,11 +74,7 @@ public class DataValidation {
         return matcher.matches() && matcher1.matches();
     }
 
-    /**
-     * Register data check boolean.
-     *
-     * @return the boolean
-     */
+
     /// Using Regular Expression to check Data from Register Fragment
     /// Result True if all text inputs are true
     boolean RegisterDataCheck() {
@@ -130,11 +88,7 @@ public class DataValidation {
         return matcherF.matches() && matcherL.matches() && matcherP.matches();
     }
 
-    /**
-     * Sending check boolean.
-     *
-     * @return the boolean
-     */
+
 
     /// Using Regular Expression to check Data from Sending Fragment
     /// Result True if all text inputs are true
