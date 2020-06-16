@@ -39,14 +39,14 @@ import okhttp3.Response;
 public class LoggedFragment extends Fragment {
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private TextView Nam1, Stat1, Send1, Nam2, Stat2, Send2, Nam3, Stat3, Send3;    //XML EditText in logged_fragment Layout
-    private List<String> Num = new ArrayList<>(); ///List for JSON Data
-    private List<String> Stat = new ArrayList<>();  ///List for JSON Data
-    private List<String> Send = new ArrayList<>();  ///List for JSON Data
+    private List<String> Num = new ArrayList<>(); ///List for JSON Output
+    private List<String> Stat = new ArrayList<>();  ///List for JSON Output
+    private List<String> Send = new ArrayList<>();  ///List for JSON Output
 
     @Override
-    ///Setting up new Toolbar Title
+
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).setActionBarTitle("MainPage");
+        ((MainActivity) getActivity()).setActionBarTitle("MainPage"); ///Setting up new Toolbar Title
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
@@ -61,7 +61,7 @@ public class LoggedFragment extends Fragment {
         return v;
     }
 
-    /// Returning User Data into text fields when entering this fragment
+    /// Returning User Input into text fields when entering this fragment ,
     /// Executing LoggedData
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -112,15 +112,14 @@ public class LoggedFragment extends Fragment {
 
     ///\brief Class that finding top 3 packages for current logged user and Setting values into Text Fields
     public class LoggedData extends AsyncTask<String, String, String> {
-        String z = "";
-        Boolean isSuccess = false; /// isSuccess Boolean
+        String z = ""; ///\param String for Toast
+        Boolean isSuccess = false; ///\param isSuccess Boolean
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
 
         }
-
         @Override
         protected void onPostExecute(String r) {
             Toast.makeText(getActivity(), r, Toast.LENGTH_SHORT).show(); ///Toast if isSuccess = false
@@ -133,8 +132,8 @@ public class LoggedFragment extends Fragment {
         @RequiresApi(api = Build.VERSION_CODES.KITKAT)
         @SuppressLint("WrongThread")
         @Override
-        ///Connecting to api and receiving Post Request Data for current logged user
-        /// \Details Receiving Data from Api formatting Json Response and saving data in Lists then list data is set on TextFields
+        ///Connecting to api and receiving Post Request Output for current logged user
+        /// Details Receiving Output from Api formatting Json Response and saving data in Lists then list data is set on TextFields
         protected String doInBackground(String... params) {
             Data data = new Data();
             String phone2 = data.getPhoneNum(); /// Getting PhoneNum that identify logged user

@@ -23,21 +23,21 @@ public class MainActivity extends AppCompatActivity {
 }
 
 
-/// Class Handling Setter and Getter for Variable that will identify user after Login
+///\brief Class Handling Setter and Getter for Variable that will identify user after Login
 class Data {
 
 
-    public static String PhoneNum; /// PhoneNum logged user ID Data
+    public static String PhoneNum; /// PhoneNum String
 
-
+    ///\brief getter PhoneNub
     String getPhoneNum() {
         return PhoneNum;
-    }   ///getter PhoneNub
+    }
 
-
+    ///\brief setter PhoneNub
     void setPhoneNum(String PhoneNum) {
         Data.PhoneNum = PhoneNum;
-    }  ///setter PhoneNub
+    }
 
 }
 

@@ -6,104 +6,100 @@ import java.util.regex.Pattern;
 ///\brief DataValidation Class
 ///\details Using regex to check user input data
 public class DataValidation {
-    private String UserName;
-    private String Password;
-    private String RFname;
-    private String RLname;
-    private String RPassword;
-    private String Number;
-    private String ID;
-    private String Sender;
+    private String UserName;    ///Login UserName
+    private String Password;    ///Login Password
+    private String RFname;      ///Register First Name
+    private String RLname;      ///Register Last Name
+    private String RPassword;   ///Register Password
+    private String Number;      ///Sending Package Number/Name
+    private String ID;          ///Sending Package ID
+    private String Sender;      ///Sending Package Sender
 
 
     ///Setter Login UserName
-    void setUserName(String UserName) {
+     public void setUserName(String UserName) {
         this.UserName = UserName;
     }
 
 
-    ///Setter Login Password
-    void setPassword(String Password) {
+
+    public void setPassword(String Password) {
         this.Password = Password;
-    }
+    } ///Setter Login Password
 
 
-    ///Setter Register FirstName
-    void setRFname(String RFname) {
+
+    public void setRFname(String RFname) {
         this.RFname = RFname;
-    }
+    } ///Setter Register FirstName
 
 
-    ///Setter Register LastName
-    void setRLname(String RLname) {
+
+    public void setRLname(String RLname) {
         this.RLname = RLname;
-    }
+    } ///Setter Register LastName
 
 
-    ///Setter Register Password
-    void setRPassword(String RPassword) {
-        this.RPassword = RPassword;
-    }
+
+    public void setRPassword(String RPassword) { this.RPassword = RPassword; }   ///Setter Register Password
 
 
-    ///Setter Number
-    void setNumber(String Number) {
+
+    public void setNumber(String Number) {
         this.Number = Number;
-    }
+    } ///Setter Number
 
 
-    void setID(String ID) {
+    public void setID(String ID) {
         this.ID = ID;
-    }
+    } ///Setter ID
 
 
-    ///Setter Sender
-    void setSender(String Sender) {
+
+    public void setSender(String Sender) {
         this.Sender = Sender;
-    }
+    }  ///Setter Sender
 
 
-    /// Using Regular Expression to check Data from Login Fragment
-    /// Result True if both text inputs are true
+    ///\brief Using Regular Expression to check Data from Login Fragment
+    ///\return Result True if both text inputs are true
     boolean LoginDataCheck() {
-        String pattern = "^[a-zA-Z0-9]{3,15}";
-        String pattern2 = "^[a-zA-Z]{3,15}";
-        Pattern patcomp = Pattern.compile(pattern);
-        Pattern patcomp2 = Pattern.compile(pattern2);
-        Matcher matcher = patcomp2.matcher(UserName);
-        Matcher matcher1 = patcomp.matcher(Password);
+        String pattern = "^[a-zA-Z0-9]{3,15}"; ///Regular Expression pattern
+        String pattern2 = "^[a-zA-Z]{3,15}"; ///Regular Expression  pattern
+        Pattern patcomp = Pattern.compile(pattern); ///Compiling Patter with RegEX  pattern
+        Pattern patcomp2 = Pattern.compile(pattern2); ///Compiling Patter with RegEX  pattern
+        Matcher matcher = patcomp2.matcher(UserName); /// Matcher object for user Input
+        Matcher matcher1 = patcomp.matcher(Password); /// Matcher object for user Input
         return matcher.matches() && matcher1.matches();
     }
 
 
-    /// Using Regular Expression to check Data from Register Fragment
-    /// Result True if all text inputs are true
+    ///\brief Using Regular Expression to check Data from Register Fragment
+    ///\return Result True if all text inputs are true
     boolean RegisterDataCheck() {
-        String patternName = "^[a-zA-Z]{3,15}";
-        String patternPass = "^[a-zA-Z0-9]{3,15}";
-        Pattern patName = Pattern.compile(patternName);
-        Pattern patPass = Pattern.compile(patternPass);
-        Matcher matcherF = patName.matcher(RFname);
-        Matcher matcherL = patName.matcher(RLname);
-        Matcher matcherP = patPass.matcher(RPassword);
+        String patternName = "^[a-zA-Z]{3,15}"; ///Regular Expression  pattern
+        String patternPass = "^[a-zA-Z0-9]{3,15}"; ///Regular Expression  pattern
+        Pattern patName = Pattern.compile(patternName); ///Compiling Patter with RegEX pattern
+        Pattern patPass = Pattern.compile(patternPass); ///Compiling Patter with RegEX pattern
+        Matcher matcherF = patName.matcher(RFname); /// Matcher object for user Input
+        Matcher matcherL = patName.matcher(RLname); /// Matcher object for user Input
+        Matcher matcherP = patPass.matcher(RPassword); /// Matcher object for user Input
         return matcherF.matches() && matcherL.matches() && matcherP.matches();
     }
 
 
-
-    /// Using Regular Expression to check Data from Sending Fragment
-    /// Result True if all text inputs are true
-    /// Need to be Fixed
+    ///\brief Using Regular Expression to check Data from Sending Fragment(Need to be Fixed)
+    ///\return Result True if all text inputs are true
     boolean SendingCheck() {
-        String NumberPattern = "^[0-9]{10}";
-        String SenderPattern = "^[a-zA-Z0-9]{3,15}";
-        String IDPattern = "^[0-9]{1,2}";
-        Pattern patNum = Pattern.compile(NumberPattern);
-        Pattern patSend = Pattern.compile(SenderPattern);
-        Pattern patID = Pattern.compile(IDPattern);
-        Matcher matcherF = patNum.matcher(Number);
-        Matcher matcherL = patID.matcher(ID);
-        Matcher matcherP = patSend.matcher(Sender);
+        String NumberPattern = "^[0-9]{10}"; ///Regular Expression pattern
+        String SenderPattern = "^[a-zA-Z0-9]{3,15}"; ///Regular Expression pattern
+        String IDPattern = "^[0-9]{1,2}"; ///Regular Expression pattern
+        Pattern patNum = Pattern.compile(NumberPattern); ///Compiling Patter with RegEX pattern
+        Pattern patSend = Pattern.compile(SenderPattern); ///Compiling Patter with RegEX pattern
+        Pattern patID = Pattern.compile(IDPattern); //Compiling Patter with RegEX pattern
+        Matcher matcherF = patNum.matcher(Number); /// Matcher object for user Input
+        Matcher matcherL = patID.matcher(ID); /// Matcher object for user Input
+        Matcher matcherP = patSend.matcher(Sender); /// Matcher object for user Input
         return matcherF.matches() && matcherL.matches() && matcherP.matches();
     }
 

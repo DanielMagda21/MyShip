@@ -39,8 +39,9 @@ public class AboutFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
+
+        switch (item.getItemId()) /// Handle Menu item selection
+        {
             case R.id.Main:
                 NavHostFragment.findNavController(AboutFragment.this)
                         .navigate(R.id.action_aboutFragment_to_loggedFragment);
