@@ -10,7 +10,7 @@
     <item
         android:id="@+id/package_archives"
         android:orderInCategory="100"
-        android:title="@string/Package_archives"
+        android:title="@string/Sending"
         app:showAsAction="never" />
     <item
         android:id="@+id/About"

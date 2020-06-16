@@ -45,4 +45,5 @@
     <string name="sendorder">SendOrder</string>
     <string name="PackageReciver">PackageReciver</string>
     <string name="ReciverID">ReciverID</string>
+    <string name="Sending">Sending</string>
 </resources>
