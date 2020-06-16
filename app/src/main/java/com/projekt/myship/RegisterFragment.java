@@ -25,22 +25,19 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-/**
- * The type Register fragment.
- */
+/// \brief Register Fragment
+/// \details Fragment linked to Register xml View
 public class RegisterFragment extends Fragment {
 
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private EditText userfname, password, userlname, phone;
 
-
+    /// Inflate the layout for this fragment
+    /// Setting Toolbar Title
     @Override
-    public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         ((MainActivity) getActivity()).setActionBarTitle("Register");
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_register, container, false);
     }
 
@@ -71,18 +68,12 @@ public class RegisterFragment extends Fragment {
 
     }
 
-    /**
-     * The type Register.
-     */
-/// Connecting to API Checking Data , Checking if user Already exist if not Inserting Into Data base new User
+
+/// \brief Api usage
+/// \details Connecting to API Checking Data , Checking if user Already exist if not Inserting Into Data base new User
     public class Register extends AsyncTask<String, String, String> {
-        /**
-         * The Z.
-         */
         String z = "";
-        /**
-         * The Is success.
-         */
+        /// \param isSuccess Boolean
         Boolean isSuccess = false;
 
         @Override
@@ -90,11 +81,10 @@ public class RegisterFragment extends Fragment {
             super.onPreExecute();
 
         }
-
+        /// \brief Nav to login fragment
         @Override
         protected void onPostExecute(String s) {
             Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
-            /// If isSuccess Boolean is set up true Nav to Login Fragment
             if (isSuccess) {
                 Toast.makeText(getActivity(), "Login Successfull", Toast.LENGTH_LONG).show();
                 NavHostFragment.findNavController(RegisterFragment.this)
@@ -141,6 +131,7 @@ public class RegisterFragment extends Fragment {
                         z = "Welcome";
                         isSuccess = true;
                     } else
+                        ///Handling Response Codes that are not successful
                         switch (content) {
                             case "Conflict":
                                 z = "User already exist";
@@ -159,6 +150,7 @@ public class RegisterFragment extends Fragment {
                 }
 
             }
+            /// returning String Value to Toast
             return z;
         }
 

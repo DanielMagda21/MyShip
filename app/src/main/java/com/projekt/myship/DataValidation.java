@@ -21,54 +21,60 @@ public class DataValidation {
      *
      * @param UserName the user name
      */
+    ///Setter Login UserName
     void setUserName(String UserName) {
         this.UserName = UserName;
-    }   ///Setter Login UserName
+    }
 
     /**
      * Sets password.
      *
      * @param Password the password
      */
+    ///Setter Login Password
     void setPassword(String Password) {
         this.Password = Password;
-    }   ///Setter Login Password
+    }
 
     /**
      * Sets r fname.
      *
      * @param RFname the r fname
      */
+    ///Setter Register FirstName
     void setRFname(String RFname) {
         this.RFname = RFname;
-    }   ///Setter Register FirstName
+    }
 
     /**
      * Sets r lname.
      *
      * @param RLname the r lname
      */
+    ///Setter Register LastName
     void setRLname(String RLname) {
         this.RLname = RLname;
-    }   ///Setter Register LastName
+    }
 
     /**
      * Sets r password.
      *
      * @param RPassword the r password
      */
+    ///Setter Register Password
     void setRPassword(String RPassword) {
         this.RPassword = RPassword;
-    }   ///Setter Register Password
+    }
 
     /**
      * Sets number.
      *
      * @param Number the number
      */
+    ///Setter Number
     void setNumber(String Number) {
         this.Number = Number;
-    }   ///Setter Number
+    }
 
     /**
      * Sets id.
@@ -77,26 +83,25 @@ public class DataValidation {
      */
     void setID(String ID) {
         this.ID = ID;
-    }   ///Setter ID
+    }
 
     /**
      * Sets sender.
      *
      * @param Sender the sender
      */
+    ///Setter Sender
     void setSender(String Sender) {
         this.Sender = Sender;
-    }   ///Setter Sender
+    }
 
     /**
      * Login data check boolean.
      *
      * @return the boolean
      */
-///summary///
     /// Using Regular Expression to check Data from Login Fragment
     /// Result True if both text inputs are true
-    ///summary///
     boolean LoginDataCheck() {
         String pattern = "^[a-zA-Z0-9]{3,15}";
         String pattern2 = "^[a-zA-Z]{3,15}";
@@ -112,10 +117,8 @@ public class DataValidation {
      *
      * @return the boolean
      */
-///summary///
     /// Using Regular Expression to check Data from Register Fragment
     /// Result True if all text inputs are true
-    ///summary///
     boolean RegisterDataCheck() {
         String patternName = "^[a-zA-Z]{3,15}";
         String patternPass = "^[a-zA-Z0-9]{3,15}";
@@ -132,11 +135,10 @@ public class DataValidation {
      *
      * @return the boolean
      */
-///summary///
+
     /// Using Regular Expression to check Data from Sending Fragment
     /// Result True if all text inputs are true
     /// Need to be Fixed
-    ///summary///
     boolean SendingCheck() {
         String NumberPattern = "^[0-9]{10}";
         String SenderPattern = "^[a-zA-Z0-9]{3,15}";

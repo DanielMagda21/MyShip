@@ -78,7 +78,7 @@ public class SendingFragment extends Fragment {
 
     }
 
-    /// Toolbar Menu
+    ///Setting up Toolbar Menu
     @Override
     public void onCreateOptionsMenu(@NotNull Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_logged, menu);
@@ -176,6 +176,7 @@ public class SendingFragment extends Fragment {
 
                         z = "Your order was sent";
                     } else
+                        ///Handling Response Codes that are not successful
                         switch (content) {
                             case "Not Found":
                                 z = "Something went wrong";
@@ -197,6 +198,7 @@ public class SendingFragment extends Fragment {
                 }
 
             }
+            /// returning String Value to Toast
             return z;
         }
     }

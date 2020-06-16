@@ -19,6 +19,8 @@ import org.jetbrains.annotations.NotNull;
  */
 public class AboutFragment extends Fragment {
     @Override
+    /// Inflate the layout for this fragment
+    /// Setting new Title for This Fragment
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
@@ -26,7 +28,7 @@ public class AboutFragment extends Fragment {
     ) {
         ((MainActivity) getActivity()).setActionBarTitle("About");  ///Setting ToolBar Title
         setHasOptionsMenu(true);
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.about_fragment, container, false);
     }
 
@@ -34,7 +36,7 @@ public class AboutFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
-
+    ///Setting up Toolbar Menu
     @Override
     public void onCreateOptionsMenu(@NotNull Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_logged, menu);

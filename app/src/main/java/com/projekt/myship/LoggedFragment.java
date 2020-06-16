@@ -35,9 +35,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-/**
- * The type Logged fragment.
- */
+///\brief Class linked to Login xml view
 public class LoggedFragment extends Fragment {
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private TextView Nam1, Stat1, Send1, Nam2, Stat2, Send2, Nam3, Stat3, Send3;
@@ -46,22 +44,24 @@ public class LoggedFragment extends Fragment {
     private List<String> Send = new ArrayList<>();
 
     @Override
+    ///Setting up new Toolbar Title
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).setActionBarTitle("MainPage"); ///Setting up new Toolbar Title
+        ((MainActivity) getActivity()).setActionBarTitle("MainPage");
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
     }
 
     @Override
+    /// Inflate the layout for this fragment
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.logged_fragment, container, false);
 
         return v;
     }
 
+    /// Returning User Data into text fields when entering this fragment
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Nam1 = view.findViewById(R.id.PackageNameData);
@@ -73,7 +73,6 @@ public class LoggedFragment extends Fragment {
         Nam3 = view.findViewById(R.id.PackageNameData3);
         Stat3 = view.findViewById(R.id.PackageStatusData3);
         Send3 = view.findViewById(R.id.PackagesenderData3);
-        /// Returning User Data into text fields when entering this fragment
         LoggedData loggedData = new LoggedData();
         loggedData.execute();
 
@@ -109,18 +108,11 @@ public class LoggedFragment extends Fragment {
         }
     }
 
-    /**
-     * The type Logged data.
-     */
-/// Class that finding top 3 packages for current logged user and Setting values into Text Fields
+
+    ///\brief Class that finding top 3 packages for current logged user and Setting values into Text Fields
     public class LoggedData extends AsyncTask<String, String, String> {
-        /**
-         * The Z.
-         */
         String z = "";
-        /**
-         * The Is success.
-         */
+        ///\param isSuccess Boolean
         Boolean isSuccess = false;
 
         @Override
@@ -134,7 +126,7 @@ public class LoggedFragment extends Fragment {
             Toast.makeText(getActivity(), r, Toast.LENGTH_SHORT).show();
             if (isSuccess) {
 
-                Toast.makeText(getActivity(), "Welcome", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Your Packages", Toast.LENGTH_LONG).show();
             }
         }
 
@@ -142,6 +134,7 @@ public class LoggedFragment extends Fragment {
         @SuppressLint("WrongThread")
         @Override
         ///Connecting to api and receiving Post Request Data for current logged user
+        /// \Details Receiving Data from Api formatting Json Response and saving data in Lists then list data is set on TextFields
         protected String doInBackground(String... params) {
             Data data = new Data();
             String phone2 = data.getPhoneNum();
@@ -161,7 +154,6 @@ public class LoggedFragment extends Fragment {
             try (Response res = client.newCall(request).execute()) {
                 String content = res.body().string();
                 if (res.isSuccessful()) {
-                    ///Receiving Data from Json Response and saving data in Lists
                     JSONArray JA = new JSONArray(content);
                     for (int i = 0; i < JA.length(); i++) {
                         JSONObject object = JA.getJSONObject(i);
@@ -172,7 +164,7 @@ public class LoggedFragment extends Fragment {
                         Stat.add(Status.trim());
                         Send.add(Sender.trim());
 
-                    }       /// Setting Lists Values Into TextFields
+                    }
                     Nam1.setText(Num.get(0));
                     Stat1.setText(Stat.get(0));
                     Send1.setText(Send.get(0));

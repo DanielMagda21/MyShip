@@ -147,6 +147,7 @@ public class LoginFragment extends Fragment {
                             isSuccess = true;
 
                         } else
+                            ///Handling Response Codes that are not successful
                             switch (content) {
                                 case "Not Found":
                                     z = "User not Found";
@@ -169,6 +170,7 @@ public class LoginFragment extends Fragment {
 
                 }
             }
+            /// returning String Value to Toast
             return z;
         }
     }
