@@ -30,7 +30,7 @@ import okhttp3.Response;
 public class LoginFragment extends Fragment {
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private DataValidation dataValidation = new DataValidation(); ///DataValidation object
-    private EditText username, password; ///XML EditText in login_fragment Layout
+    private EditText username, password; ///XML EditText in fragment_first Layout
 
     @Override
     public View onCreateView(
@@ -38,7 +38,7 @@ public class LoginFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         ((MainActivity) getActivity()).setActionBarTitle("Login"); ///Setting new Toolbar Tittle
-        return inflater.inflate(R.layout.login_fragment, container, false);
+        return inflater.inflate(R.layout.fragment_first, container, false);
 
     }
 

@@ -8,31 +8,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import org.jetbrains.annotations.NotNull;
 
-/**
- * The type About fragment.
- */
 public class AboutFragment extends Fragment {
     @Override
-    /// Inflate the layout for this fragment
-    /// Setting new Title for This Fragment
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
 
     ) {
-        ((MainActivity) getActivity()).setActionBarTitle("About");
+        ((MainActivity) getActivity()).setActionBarTitle("About");  /// Setting new Title for This Fragment
         setHasOptionsMenu(true);
 
-        return inflater.inflate(R.layout.about_fragment, container, false);
+        return inflater.inflate(R.layout.about_fragment, container, false); /// Inflate the layout for this fragment
     }
 
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NotNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
 

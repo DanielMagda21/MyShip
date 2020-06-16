@@ -142,7 +142,7 @@ public class SendingFragment extends Fragment {
             /// Checking if TextFields are not empty
             if (name.trim().equals("") || id.trim().equals("") || sender.trim().equals("")) {
                 z = "Please enter Data"; ///Setting String that will be used for Toast
-            } ///TODO Fix This Method current Skipping it
+            } ///Need Fix This Method current Skipping it
             /*else if (!dataValidation.SendingCheck()) {
                 z = "Please enter Valid Data"; ///Setting String that will be used for Toast
             } */

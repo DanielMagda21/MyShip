@@ -174,7 +174,7 @@ public class LoggedFragment extends Fragment {
                     Nam3.setText(Num.get(2));
                     Stat3.setText(Stat.get(2));
                     Send3.setText(Send.get(2));
-
+                    z = "Your";
                     isSuccess =true; /// isSuccess Boolean true if Api respond with good code
                 } else
 

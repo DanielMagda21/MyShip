@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main); ///Setting Main View For whole activity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
@@ -26,17 +27,17 @@ public class MainActivity extends AppCompatActivity {
 class Data {
 
 
-    public static String PhoneNum;
+    public static String PhoneNum; /// PhoneNum logged user ID Data
 
 
     String getPhoneNum() {
         return PhoneNum;
-    }
+    }   ///getter PhoneNub
 
 
     void setPhoneNum(String PhoneNum) {
         Data.PhoneNum = PhoneNum;
-    }
+    }  ///setter PhoneNub
 
 }
 
