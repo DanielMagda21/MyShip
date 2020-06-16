@@ -3,7 +3,8 @@ package com.projekt.myship;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+///\brief DataValidation Class
+///\details Using regex to check user input data
 public class DataValidation {
     private String UserName;
     private String Password;
