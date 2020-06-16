@@ -151,6 +151,7 @@ public class RegisterFragment extends Fragment {
 
             }
             /// returning String Value to Toast
+
             return z;
         }
 
