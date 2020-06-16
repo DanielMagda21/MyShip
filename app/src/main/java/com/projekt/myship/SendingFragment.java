@@ -32,9 +32,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-/**
- * The type Sending fragment.
- */
+
 public class SendingFragment extends Fragment {
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private EditText OrderName, OrderReciver, OrderID;
@@ -106,19 +104,13 @@ public class SendingFragment extends Fragment {
         }
     }
 
-    /**
-     * The type Sending data.
-     */
-/// Class that connect to Api and if Data are Valid Inserting Order  Data Into Database
+
+    /// Class that connect to Api and if Data are Valid Inserting Order  Data Into Database
     public class SendingData extends AsyncTask<String, String, String> {
-        /**
-         * The Z.
-         */
+
         String z = "";
-        /**
-         * The Is success.
-         */
-        Boolean isSuccess = false;
+
+        Boolean isSuccess = false; /// isSuccess Boolean
 
         @Override
         protected void onPreExecute() {
@@ -149,17 +141,17 @@ public class SendingFragment extends Fragment {
             dataValidation.setSender(sender);
             /// Checking if TextFields are not empty
             if (name.trim().equals("") || id.trim().equals("") || sender.trim().equals("")) {
-                z = "Please enter Data";
+                z = "Please enter Data"; ///Setting String that will be used for Toast
             } ///TODO Fix This Method current Skipping it
             /*else if (!dataValidation.SendingCheck()) {
-                z = "Please enter Valid Data";
+                z = "Please enter Valid Data"; ///Setting String that will be used for Toast
             } */
             /// Connecting to API and Inserting Order Data Into DataBase
             else {
                 String jsonString = "{\"id\":\"" + id + "\",\"name\":\"" + name + "\",\"sender\":\"" + sender + "\"}";
                 URL url = null;
                 try {
-                    url = new URL("http://192.168.0.100:3000/Send");
+                    url = new URL("http://192.168.0.100:3000/Send"); ///Api URL
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
@@ -173,33 +165,33 @@ public class SendingFragment extends Fragment {
                     String content = res.body().string();
                     if (res.isSuccessful()) {
 
+                        isSuccess = true; /// isSuccess Boolean true if Api respond with good code
 
-                        z = "Your order was sent";
                     } else
                         ///Handling Response Codes that are not successful
                         switch (content) {
                             case "Not Found":
-                                z = "Something went wrong";
+                                z = "Something went wrong"; ///Setting String that will be used for Toast
                                 break;
                             case "Internal Server Error":
-                                z = "Something went wrong2";
+                                z = "Something went wrong2"; ///Setting String that will be used for Toast
                                 break;
                             case "Unauthorized":
-                                z = "Something went wrong3";
+                                z = "Something went wrong3"; ///Setting String that will be used for Toast
                                 break;
                             default:
-                                z = "Try again Later";
+                                z = "Try again Later"; ///Setting String that will be used for Toast
                                 break;
                         }
 
                 } catch (IOException e) {
                     e.printStackTrace();
-                    z = "Check your connection";
+                    z = "Check your connection"; ///Setting String that will be used for Toast
                 }
 
             }
-            /// returning String Value to Toast
-            return z;
+
+            return z; /// returning String Value to Toast
         }
     }
 }

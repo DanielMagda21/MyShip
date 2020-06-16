@@ -30,15 +30,13 @@ import okhttp3.Response;
 public class RegisterFragment extends Fragment {
 
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-    private EditText userfname, password, userlname, phone;
+    private EditText userfname, password, userlname, phone; ///XML EditText in fragment_register Layout
 
-    /// Inflate the layout for this fragment
-    /// Setting Toolbar Title
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
-        ((MainActivity) getActivity()).setActionBarTitle("Register");
-        return inflater.inflate(R.layout.fragment_register, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        ((MainActivity) getActivity()).setActionBarTitle("Register"); /// Setting Toolbar Title
+        return inflater.inflate(R.layout.fragment_register, container, false); /// Inflate the layout for this fragment
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -69,25 +67,26 @@ public class RegisterFragment extends Fragment {
     }
 
 
-/// \brief Api usage
+    /// \brief Api usage
 /// \details Connecting to API Checking Data , Checking if user Already exist if not Inserting Into Data base new User
     public class Register extends AsyncTask<String, String, String> {
         String z = "";
-        /// \param isSuccess Boolean
-        Boolean isSuccess = false;
+
+        Boolean isSuccess = false; /// isSuccess Boolean
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
 
         }
-        /// \brief Nav to login fragment
+
+        /// \brief Nav to login fragment if isSuccess Return True
         @Override
         protected void onPostExecute(String s) {
-            Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show(); ///Toast if isSuccess = false
             if (isSuccess) {
-                Toast.makeText(getActivity(), "Login Successfull", Toast.LENGTH_LONG).show();
-                NavHostFragment.findNavController(RegisterFragment.this)
+                Toast.makeText(getActivity(), "Login Successfull", Toast.LENGTH_LONG).show(); ///Toast if isSuccess = true
+                NavHostFragment.findNavController(RegisterFragment.this)   /// Nav to Login Fragment
                         .navigate(R.id.action_registerFragment_to_loginFragment);
             }
         }
@@ -95,26 +94,27 @@ public class RegisterFragment extends Fragment {
         @RequiresApi(api = Build.VERSION_CODES.KITKAT)
         @Override
         protected String doInBackground(String... params) {
-            String userfname = RegisterFragment.this.userfname.getText().toString();
-            String userlname = RegisterFragment.this.userlname.getText().toString();
-            String password = RegisterFragment.this.password.getText().toString();
-            String phone = RegisterFragment.this.phone.getText().toString();
-            DataValidation dataValidation = new DataValidation();
-            dataValidation.setRFname(userfname);
-            dataValidation.setRLname(userlname);
-            dataValidation.setRPassword(password);
-            /// Checking if TextFields are not empty
-            if (userfname.trim().equals("") || userlname.trim().equals("") || password.trim().equals("") || phone.trim().equals("")) {
-                z = "Please enter Data";
+            String userfname = RegisterFragment.this.userfname.getText().toString(); ///Getting Data from TextFields
+            String userlname = RegisterFragment.this.userlname.getText().toString();    ///Getting Data from TextFields
+            String password = RegisterFragment.this.password.getText().toString();  ///Getting Data from TextFields
+            String phone = RegisterFragment.this.phone.getText().toString();    ///Getting Data from TextFields
+            DataValidation dataValidation = new DataValidation();   /// DataValidation object
+            dataValidation.setRFname(userfname);    /// DataValidation setting  setRFname
+            dataValidation.setRLname(userlname);    /// DataValidation setting  setRLname
+            dataValidation.setRPassword(password);  /// DataValidation setting  setRPassword
+            if (userfname.trim().equals("") || userlname.trim().equals("") || password.trim().equals("") || phone.trim().equals(""))  /// Checking if TextFields are not empty
+            {
+                z = "Please enter Data"; ///Setting String that will be used for Toast
                 /// Calling Regular Expression methods if data are valid
-            } else if (!dataValidation.RegisterDataCheck()) {
-                z = "Please enter Valid Data";
+            } else if (!dataValidation.RegisterDataCheck())   /// Calling Regular Expression methods
+            {
+                z = "Please enter Valid Data"; ///Setting String that will be used for Toast
             } else {
                 ///Connecting Api and Inserting User TextFields Data into Data base
                 String jsonString = "{\"userfname\":\"" + userfname + "\",\"userlname\":\"" + userlname + "\",\"password\":\"" + password + "\",\"number\":\"" + phone + "\"}";
                 URL url = null;
                 try {
-                    url = new URL("http://192.168.0.100:3000/Register");
+                    url = new URL("http://192.168.0.100:3000/Register"); ///Api URL
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
@@ -128,19 +128,20 @@ public class RegisterFragment extends Fragment {
                 try (Response res = client.newCall(request).execute()) {
                     String content = res.body().string();
                     if (res.isSuccessful()) {
-                        z = "Welcome";
-                        isSuccess = true;
+                        z = "Welcome";  ///Handling Response Codes that are not successful
+                        isSuccess = true;  /// isSuccess Boolean true if Api respond with good code
                     } else
-                        ///Handling Response Codes that are not successful
-                        switch (content) {
+
+                        switch (content) ///Handling Response Codes that are not successful
+                        {
                             case "Conflict":
-                                z = "User already exist";
+                                z = "User already exist"; ///Setting String that will be used for Toast
                                 break;
                             case "Internal Server Error":
-                                z = "Something went wrong";
+                                z = "Something went wrong"; ///Setting String that will be used for Toast
                                 break;
                             default:
-                                z = "Try again Later";
+                                z = "Try again Later"; ///Setting String that will be used for Toast
                                 break;
                         }
 
@@ -150,9 +151,9 @@ public class RegisterFragment extends Fragment {
                 }
 
             }
-            /// returning String Value to Toast
 
-            return z;
+
+            return z;  /// returning String Value to Toast
         }
 
 

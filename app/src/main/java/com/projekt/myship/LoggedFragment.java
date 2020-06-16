@@ -35,13 +35,13 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-///\brief Class linked to Login xml view
+///\brief Class linked to logged_fragment xml view
 public class LoggedFragment extends Fragment {
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-    private TextView Nam1, Stat1, Send1, Nam2, Stat2, Send2, Nam3, Stat3, Send3;
-    private List<String> Num = new ArrayList<>();
-    private List<String> Stat = new ArrayList<>();
-    private List<String> Send = new ArrayList<>();
+    private TextView Nam1, Stat1, Send1, Nam2, Stat2, Send2, Nam3, Stat3, Send3;    //XML EditText in logged_fragment Layout
+    private List<String> Num = new ArrayList<>(); ///List for JSON Data
+    private List<String> Stat = new ArrayList<>();  ///List for JSON Data
+    private List<String> Send = new ArrayList<>();  ///List for JSON Data
 
     @Override
     ///Setting up new Toolbar Title
@@ -62,6 +62,7 @@ public class LoggedFragment extends Fragment {
     }
 
     /// Returning User Data into text fields when entering this fragment
+    /// Executing LoggedData
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Nam1 = view.findViewById(R.id.PackageNameData);
@@ -112,8 +113,7 @@ public class LoggedFragment extends Fragment {
     ///\brief Class that finding top 3 packages for current logged user and Setting values into Text Fields
     public class LoggedData extends AsyncTask<String, String, String> {
         String z = "";
-        ///\param isSuccess Boolean
-        Boolean isSuccess = false;
+        Boolean isSuccess = false; /// isSuccess Boolean
 
         @Override
         protected void onPreExecute() {
@@ -123,10 +123,10 @@ public class LoggedFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String r) {
-            Toast.makeText(getActivity(), r, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), r, Toast.LENGTH_SHORT).show(); ///Toast if isSuccess = false
             if (isSuccess) {
 
-                Toast.makeText(getActivity(), "Your Packages", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Your Packages", Toast.LENGTH_LONG).show(); ///Toast if isSuccess = true
             }
         }
 
@@ -137,35 +137,35 @@ public class LoggedFragment extends Fragment {
         /// \Details Receiving Data from Api formatting Json Response and saving data in Lists then list data is set on TextFields
         protected String doInBackground(String... params) {
             Data data = new Data();
-            String phone2 = data.getPhoneNum();
+            String phone2 = data.getPhoneNum(); /// Getting PhoneNum that identify logged user
             String jsonString = "{\"Number\":\"" + phone2 + "\"}";
             URL url = null;
             try {
-                url = new URL("http://192.168.0.100:3000/Data");
+                url = new URL("http://192.168.0.100:3000/Data"); ///Api URL
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
-            OkHttpClient client = new OkHttpClient();
+            OkHttpClient client = new OkHttpClient(); /// OkHttp client used for Api Connection
             RequestBody requestBody = RequestBody.create(jsonString, JSON);
             Request request = new Request.Builder()
                     .url(url)
                     .post(requestBody)
                     .build();
             try (Response res = client.newCall(request).execute()) {
-                String content = res.body().string();
+                String content = res.body().string(); ///Getting JSON API Response to String
                 if (res.isSuccessful()) {
-                    JSONArray JA = new JSONArray(content);
+                    JSONArray JA = new JSONArray(content); /// JSON Array
                     for (int i = 0; i < JA.length(); i++) {
-                        JSONObject object = JA.getJSONObject(i);
-                        String Number = object.getString("PackageNumber");
-                        String Status = object.getString("PackageStatus");
-                        String Sender = object.getString("PackageSender");
-                        Num.add(Number.trim());
-                        Stat.add(Status.trim());
-                        Send.add(Sender.trim());
+                        JSONObject object = JA.getJSONObject(i);    /// JSON Object
+                        String Number = object.getString("PackageNumber");  /// Getting object element
+                        String Status = object.getString("PackageStatus");  /// Getting object element
+                        String Sender = object.getString("PackageSender");  /// Getting object element
+                        Num.add(Number.trim());     ///Saving data to List object
+                        Stat.add(Status.trim());    ///Saving data to List object
+                        Send.add(Sender.trim());    ///Saving data to List object
 
                     }
-                    Nam1.setText(Num.get(0));
+                    Nam1.setText(Num.get(0));   ///Setting TextViews text property with List Objects
                     Stat1.setText(Stat.get(0));
                     Send1.setText(Send.get(0));
                     Nam2.setText(Num.get(1));
@@ -175,32 +175,32 @@ public class LoggedFragment extends Fragment {
                     Stat3.setText(Stat.get(2));
                     Send3.setText(Send.get(2));
 
-
-                    z = "Your Packages";
+                    isSuccess =true; /// isSuccess Boolean true if Api respond with good code
                 } else
-                    ///Handling Response Codes that are not successful
-                    switch (content) {
+
+                    switch (content)  ///Handling Response Codes that are not successful
+                    {
                         case "Not Found":
-                            z = "User not Found";
+                            z = "User not Found";   ///Setting String that will be used for Toast
                             break;
                         case "Internal Server Error":
-                            z = "Something went wrong";
+                            z = "Something went wrong"; ///Setting String that will be used for Toast
                             break;
                         case "Unauthorized":
-                            z = "Wrong Password";
+                            z = "Wrong Password";   ///Setting String that will be used for Toast
                             break;
                         default:
-                            z = "Try again Later";
+                            z = "Try again Later";  ///Setting String that will be used for Toast
                             break;
                     }
 
             } catch (IOException | JSONException e) {
                 e.printStackTrace();
-                z = "Check your connection";
+                z = "Check your connection";    ///Setting String that will be used for Toast
             }
 
-            /// returning String Value to Toast
-            return z;
+
+            return z;  /// returning String Value to Toast
         }
     }
 }

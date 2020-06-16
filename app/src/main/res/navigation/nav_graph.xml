@@ -9,7 +9,7 @@
         android:name="com.projekt.myship.LoginFragment"
         android:label="LoginFragment"
         app:graph="@navigation/nav_graph"
-        tools:layout="@layout/fragment_first" >
+        tools:layout="@layout/login_fragment" >
         <action
             android:id="@+id/action_loginFragment_to_loggedFragment"
             app:destination="@id/loggedFragment" />
