@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class LoggedFragment extends Fragment {
     private List<String> Num = new ArrayList<>(); ///List for JSON Output
     private List<String> Stat = new ArrayList<>();  ///List for JSON Output
     private List<String> Send = new ArrayList<>();  ///List for JSON Output
+    private LinearLayout layout1, layout2, layout3;
 
     @Override
 
@@ -74,6 +76,9 @@ public class LoggedFragment extends Fragment {
         Nam3 = view.findViewById(R.id.PackageNameData3);
         Stat3 = view.findViewById(R.id.PackageStatusData3);
         Send3 = view.findViewById(R.id.PackagesenderData3);
+        layout1 = view.findViewById(R.id.linearLayout1);
+        layout2 = view.findViewById(R.id.linearLayout2);
+        layout3 = view.findViewById(R.id.linearLayout3);
         LoggedData loggedData = new LoggedData();
         loggedData.execute();
 
@@ -120,6 +125,7 @@ public class LoggedFragment extends Fragment {
             super.onPreExecute();
 
         }
+
         @Override
         protected void onPostExecute(String r) {
             Toast.makeText(getActivity(), r, Toast.LENGTH_SHORT).show(); ///Toast if isSuccess = false
@@ -152,7 +158,7 @@ public class LoggedFragment extends Fragment {
                     .build();
             try (Response res = client.newCall(request).execute()) {
                 String content = res.body().string(); ///Getting JSON API Response to String
-                if (res.isSuccessful()) {
+                if (res.code() == 200) {
                     JSONArray JA = new JSONArray(content); /// JSON Array
                     for (int i = 0; i < JA.length(); i++) {
                         JSONObject object = JA.getJSONObject(i);    /// JSON Object
@@ -164,17 +170,37 @@ public class LoggedFragment extends Fragment {
                         Send.add(Sender.trim());    ///Saving data to List object
 
                     }
+                    if (Num.size() == 3) {
+                        layout1.setVisibility(View.VISIBLE);
+                        layout2.setVisibility(View.VISIBLE);
+                        layout3.setVisibility(View.VISIBLE);
+                        Nam1.setText(Num.get(0));   ///Setting TextViews text property with List Objects
+                        Stat1.setText(Stat.get(0));
+                        Send1.setText(Send.get(0));
+                        Nam2.setText(Num.get(1));
+                        Stat2.setText(Stat.get(1));
+                        Send2.setText(Send.get(1));
+                        Nam3.setText(Num.get(2));
+                        Stat3.setText(Stat.get(2));
+                        Send3.setText(Send.get(2));
+
+                    } else if (Num.size() == 2) {
+                        layout1.setVisibility(View.VISIBLE);
+                        layout2.setVisibility(View.VISIBLE);
+                         Nam1.setText(Num.get(0));   ///Setting TextViews text property with List Objects
+                        Stat1.setText(Stat.get(0));
+                        Send1.setText(Send.get(0));
+                        Nam2.setText(Num.get(1));
+                        Stat2.setText(Stat.get(1));
+                        Send2.setText(Send.get(1));
+                    } else
+                        layout1.setVisibility(View.VISIBLE);
                     Nam1.setText(Num.get(0));   ///Setting TextViews text property with List Objects
                     Stat1.setText(Stat.get(0));
                     Send1.setText(Send.get(0));
-                    Nam2.setText(Num.get(1));
-                    Stat2.setText(Stat.get(1));
-                    Send2.setText(Send.get(1));
-                    Nam3.setText(Num.get(2));
-                    Stat3.setText(Stat.get(2));
-                    Send3.setText(Send.get(2));
+
                     z = "Your";
-                    isSuccess =true; /// isSuccess Boolean true if Api respond with good code
+                    isSuccess = true; /// isSuccess Boolean true if Api respond with good code
                 } else
 
                     switch (content)  ///Handling Response Codes that are not successful
