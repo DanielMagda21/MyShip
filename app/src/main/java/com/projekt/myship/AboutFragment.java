@@ -26,7 +26,7 @@ public class AboutFragment extends Fragment {
             Bundle savedInstanceState
 
     ) {
-        ((MainActivity) getActivity()).setActionBarTitle("About");  ///Setting ToolBar Title
+        ((MainActivity) getActivity()).setActionBarTitle("About");
         setHasOptionsMenu(true);
 
         return inflater.inflate(R.layout.about_fragment, container, false);
