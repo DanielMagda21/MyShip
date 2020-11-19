@@ -1,16 +1,13 @@
 <resources>
     <string name="app_name">MyShip</string>
     <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="Login">Login</string>
     <string name="Register">Register</string>
-    <string name="previous">Previous</string>
+    <string name="Previous">Previous</string>
     <string name="hintUser">Username</string>
     <string name="hintPass">Password</string>
-    <string name="Dobsze" />
-    <string name="sle" />
     <string name="message">Message</string>
     <string name="chat">Chat</string>
     <string name="profile">Profile</string>
@@ -41,8 +38,8 @@
     <string name="Functionalities">Functionalities</string>
     <string name="AppVersion">AppVersion</string>
     <string name="ordering_courier">Ordering Courier</string>
-    <string name="neworder">NewOrder</string>
-    <string name="sendorder">SendOrder</string>
+    <string name="NewOrder">NewOrder</string>
+    <string name="SendOrder">SendOrder</string>
     <string name="PackageReciver">PackageReciver</string>
     <string name="ReciverID">ReciverID</string>
     <string name="Sending">Sending</string>

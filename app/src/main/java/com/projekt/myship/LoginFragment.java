@@ -26,18 +26,18 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-///\brief Class linked to Login xml view
+
 public class LoginFragment extends Fragment {
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-    private DataValidation dataValidation = new DataValidation(); ///DataValidation object
-    private EditText username, password; ///XML EditText in fragment_first Layout
+    private final DataValidation dataValidation = new DataValidation();
+    private EditText username, password;
 
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-        ((MainActivity) getActivity()).setActionBarTitle("Login"); ///Setting new Toolbar Tittle
+        ((MainActivity) getActivity()).setActionBarTitle("Login");
         return inflater.inflate(R.layout.fragment_first, container, false);
 
     }
@@ -48,7 +48,7 @@ public class LoginFragment extends Fragment {
         Button register = view.findViewById(R.id.RegisterButton);
         username = view.findViewById(R.id.LoginUser);
         password = view.findViewById(R.id.LoginPassword);
-        ///Button executing CheckLogin
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +57,7 @@ public class LoginFragment extends Fragment {
 
             }
         });
-        /// On button Click Nav to Register Fragment
+
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,7 +75,7 @@ public class LoginFragment extends Fragment {
 
         String z = "";
 
-        Boolean isSuccess = false; /// isSuccess Boolean
+        Boolean isSuccess = false;
 
         Data data = new Data();
 
@@ -89,7 +89,7 @@ public class LoginFragment extends Fragment {
 
             Toast.makeText(getActivity(), r, Toast.LENGTH_SHORT).show();
             if (isSuccess) {
-                /// if isSuccess Boolean is set up true Nav to LoggedIn Fragment
+
                 Toast.makeText(getActivity(), "Welcome", Toast.LENGTH_LONG).show();
                 NavHostFragment.findNavController(LoginFragment.this)
                         .navigate(R.id.action_loginFragment_to_loggedFragment);
@@ -103,24 +103,21 @@ public class LoginFragment extends Fragment {
         protected String doInBackground(String... params) {
             String username = LoginFragment.this.username.getText().toString();
             String password = LoginFragment.this.password.getText().toString();
-            /// Checking if field are not empty
-            if (username.trim().equals("") || password.trim().equals("")) /// Checking if TextFields are not empty
-            {
-                z = "Please enter Username and Password"; ///Setting String that will be used for Toast
-            } else  /// Using Data Validation method to check if text entered are ok
-            {
 
-                dataValidation.setUserName(username); /// DataValidation setting  setUserName
-                dataValidation.setPassword(password); /// DataValidation setting  setPassword
-                if (!dataValidation.LoginDataCheck())   /// Calling Regular Expression methods
-                {
-                    z = "Please enter Valid Data"; ///Setting String that will be used for Toast
+            if (username.trim().equals("") || password.trim().equals("")) {
+                z = "Please enter Username and Password";
+            } else {
+
+                dataValidation.setUserName(username);
+                dataValidation.setPassword(password);
+                if (!dataValidation.LoginDataCheck()) {
+                    z = "Please enter Valid Data";
                 } else {
-                    ///Connecting to Api checking if Login Data are Valid
+
                     String jsonString = "{\"name\":\"" + username + "\",\"pass\":\"" + password + "\"}";
                     URL url = null;
                     try {
-                        url = new URL("http://192.168.0.100:3000/Login"); ///Api URL
+                        url = new URL("http://192.168.0.100:3000/Login");
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
                     }
@@ -133,38 +130,37 @@ public class LoginFragment extends Fragment {
                     try (Response res = client.newCall(request).execute()) {
                         String content = res.body().string();
                         if (res.isSuccessful()) {
-                            ///Setting up local Variable that will identify logged user
+
                             data.setPhoneNum(content);
-                            z = "Welcome"; ///Setting String that will be used for Toast
-                            isSuccess = true; /// isSuccess Boolean true if Api respond with good code
+                            z = "Welcome";
+                            isSuccess = true;
 
                         } else
 
-                            switch (content) ///Handling Response Codes that are not successful
-                            {
+                            switch (content) {
                                 case "Not Found":
-                                    z = "User not Found"; ///Setting String that will be used for Toast
+                                    z = "User not Found";
                                     break;
                                 case "Internal Server Error":
-                                    z = "Something went wrong"; ///Setting String that will be used for Toast
+                                    z = "Something went wrong";
                                     break;
                                 case "Unauthorized":
-                                    z = "Wrong Password"; ///Setting String that will be used for Toast
+                                    z = "Wrong Password";
                                     break;
                                 default:
-                                    z = "Try again Later"; ///Setting String that will be used for Toast
+                                    z = "Try again Later";
                                     break;
                             }
 
                     } catch (IOException e) {
                         e.printStackTrace();
-                        z = "Check your connection"; ///Setting String that will be used for Toast
+                        z = "Check your connection";
                     }
 
                 }
             }
 
-            return z; /// returning String Value to Toast
+            return z;
         }
     }
 

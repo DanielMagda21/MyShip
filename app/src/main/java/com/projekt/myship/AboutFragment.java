@@ -13,6 +13,8 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import org.jetbrains.annotations.NotNull;
 
+import static com.projekt.myship.R.id.*;
+
 public class AboutFragment extends Fragment {
     @Override
     public View onCreateView(
@@ -20,17 +22,15 @@ public class AboutFragment extends Fragment {
             Bundle savedInstanceState
 
     ) {
-        ((MainActivity) getActivity()).setActionBarTitle("About");  /// Setting new Title for This Fragment
+        ((MainActivity) getActivity()).setActionBarTitle("About");
         setHasOptionsMenu(true);
-
-        return inflater.inflate(R.layout.about_fragment, container, false); /// Inflate the layout for this fragment
+        return inflater.inflate(R.layout.about_fragment, container, false);
     }
 
     public void onViewCreated(@NotNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    ///Setting up Toolbar Menu
     @Override
     public void onCreateOptionsMenu(@NotNull Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_logged, menu);
@@ -40,23 +40,21 @@ public class AboutFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()) /// Handle Menu item selection
-        {
-            case R.id.Main:
-                NavHostFragment.findNavController(AboutFragment.this)
-                        .navigate(R.id.action_aboutFragment_to_loggedFragment);
-                return true;
-            case R.id.package_archives:
-                NavHostFragment.findNavController(AboutFragment.this)
-                        .navigate(R.id.action_aboutFragment_to_packageArchives);
-                return true;
-            case R.id.Logout:
-                NavHostFragment.findNavController(AboutFragment.this)
-                        .navigate(R.id.action_aboutFragment_to_loginFragment);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        int itemId = item.getItemId();
+        if (itemId == Main) {
+            NavHostFragment.findNavController(AboutFragment.this)
+                    .navigate(action_aboutFragment_to_loggedFragment);
+            return true;
+        } else if (itemId == package_archives) {
+            NavHostFragment.findNavController(AboutFragment.this)
+                    .navigate(action_aboutFragment_to_packageArchives);
+            return true;
+        } else if (itemId == Logout) {
+            NavHostFragment.findNavController(AboutFragment.this)
+                    .navigate(action_aboutFragment_to_loginFragment);
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
 

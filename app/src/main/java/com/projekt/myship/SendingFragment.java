@@ -142,10 +142,10 @@ public class SendingFragment extends Fragment {
             /// Checking if TextFields are not empty
             if (name.trim().equals("") || id.trim().equals("") || sender.trim().equals("")) {
                 z = "Please enter Data"; ///Setting String that will be used for Toast
-            } ///Need Fix This Method current Skipping it
-            /*else if (!dataValidation.SendingCheck()) {
+            }
+           else if (!dataValidation.SendingCheck()) {
                 z = "Please enter Valid Data"; ///Setting String that will be used for Toast
-            } */
+            }
             /// Connecting to API and Inserting Order Data Into DataBase
             else {
                 String jsonString = "{\"id\":\"" + id + "\",\"name\":\"" + name + "\",\"sender\":\"" + sender + "\"}";
