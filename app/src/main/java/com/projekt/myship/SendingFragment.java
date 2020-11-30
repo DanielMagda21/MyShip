@@ -51,9 +51,9 @@ public class SendingFragment extends Fragment {
             Bundle savedInstanceState
 
     ) {
-        ((MainActivity) getActivity()).setActionBarTitle("SendingFragment"); /// New Toolbar Title
+        ((MainActivity) getActivity()).setActionBarTitle("SendingFragment");
         setHasOptionsMenu(true);
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.send_fragment, container, false);
 
     }
@@ -64,7 +64,6 @@ public class SendingFragment extends Fragment {
         OrderName = view.findViewById(R.id.OrderName);
         OrderReciver = view.findViewById(R.id.OrderReciver);
         OrderID = view.findViewById(R.id.OrderID);
-        /// Button that execute SendingData
         SendOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +75,6 @@ public class SendingFragment extends Fragment {
 
     }
 
-    ///Setting up Toolbar Menu
     @Override
     public void onCreateOptionsMenu(@NotNull Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_logged, menu);
@@ -85,32 +83,28 @@ public class SendingFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.Main:
-                NavHostFragment.findNavController(SendingFragment.this)
-                        .navigate(R.id.action_packageArchives_to_loggedFragment);
-                return true;
-            case R.id.About:
-                NavHostFragment.findNavController(SendingFragment.this)
-                        .navigate(R.id.action_packageArchives_to_aboutFragment);
-                return true;
-            case R.id.Logout:
-                NavHostFragment.findNavController(SendingFragment.this)
-                        .navigate(R.id.action_packageArchives_to_loginFragment);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        int itemId = item.getItemId();
+        if (itemId == R.id.Main) {
+            NavHostFragment.findNavController(SendingFragment.this)
+                    .navigate(R.id.action_packageArchives_to_loggedFragment);
+            return true;
+        } else if (itemId == R.id.About) {
+            NavHostFragment.findNavController(SendingFragment.this)
+                    .navigate(R.id.action_packageArchives_to_aboutFragment);
+            return true;
+        } else if (itemId == R.id.Logout) {
+            NavHostFragment.findNavController(SendingFragment.this)
+                    .navigate(R.id.action_packageArchives_to_loginFragment);
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
-
-    /// Class that connect to Api and if Data are Valid Inserting Order  Data Into Database
     public class SendingData extends AsyncTask<String, String, String> {
 
         String z = "";
 
-        Boolean isSuccess = false; /// isSuccess Boolean
+        Boolean isSuccess = false;
 
         @Override
         protected void onPreExecute() {
@@ -139,15 +133,11 @@ public class SendingFragment extends Fragment {
             dataValidation.setID(id);
             dataValidation.setNumber(name);
             dataValidation.setSender(sender);
-            /// Checking if TextFields are not empty
             if (name.trim().equals("") || id.trim().equals("") || sender.trim().equals("")) {
-                z = "Please enter Data"; ///Setting String that will be used for Toast
-            }
-           else if (!dataValidation.SendingCheck()) {
-                z = "Please enter Valid Data"; ///Setting String that will be used for Toast
-            }
-            /// Connecting to API and Inserting Order Data Into DataBase
-            else {
+                z = "Please enter Data";
+            } else if (!dataValidation.SendingCheck()) {
+                z = "Please enter Valid Data";
+            } else {
                 String jsonString = "{\"id\":\"" + id + "\",\"name\":\"" + name + "\",\"sender\":\"" + sender + "\"}";
                 URL url = null;
                 try {
@@ -165,33 +155,33 @@ public class SendingFragment extends Fragment {
                     String content = res.body().string();
                     if (res.isSuccessful()) {
 
-                        isSuccess = true; /// isSuccess Boolean true if Api respond with good code
+                        isSuccess = true;
 
                     } else
-                        ///Handling Response Codes that are not successful
+
                         switch (content) {
                             case "Not Found":
-                                z = "Something went wrong"; ///Setting String that will be used for Toast
+                                z = "Something went wrong";
                                 break;
                             case "Internal Server Error":
-                                z = "Something went wrong2"; ///Setting String that will be used for Toast
+                                z = "Something went wrong2";
                                 break;
                             case "Unauthorized":
-                                z = "Something went wrong3"; ///Setting String that will be used for Toast
+                                z = "Something went wrong3";
                                 break;
                             default:
-                                z = "Try again Later"; ///Setting String that will be used for Toast
+                                z = "Try again Later";
                                 break;
                         }
 
                 } catch (IOException e) {
                     e.printStackTrace();
-                    z = "Check your connection"; ///Setting String that will be used for Toast
+                    z = "Check your connection";
                 }
 
             }
 
-            return z; /// returning String Value to Toast
+            return z;
         }
     }
 }

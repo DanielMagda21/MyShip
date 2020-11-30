@@ -75,7 +75,6 @@ public class LoggedFragment extends Fragment {
     }
 
     @Override
-    /// Inflate the layout for this fragment
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 

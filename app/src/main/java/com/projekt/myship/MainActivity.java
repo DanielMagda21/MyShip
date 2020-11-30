@@ -25,14 +25,12 @@ public class MainActivity extends AppCompatActivity {
 class Data {
 
 
-    public static String PhoneNum; /// PhoneNum String
+    public static String PhoneNum;
 
-    ///\brief getter PhoneNub
     String getPhoneNum() {
         return PhoneNum;
     }
 
-    ///\brief setter PhoneNub
     void setPhoneNum(String PhoneNum) {
         Data.PhoneNum = PhoneNum;
     }

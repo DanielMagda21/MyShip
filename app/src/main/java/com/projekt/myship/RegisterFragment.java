@@ -25,18 +25,16 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-/// \brief Register Fragment
-/// \details Fragment linked to Register xml View
 public class RegisterFragment extends Fragment {
 
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-    private EditText userfname, password, userlname, phone; ///XML EditText in fragment_register Layout
+    private EditText userfname, password, userlname, phone;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).setActionBarTitle("Register"); /// Setting Toolbar Title
-        return inflater.inflate(R.layout.fragment_register, container, false); /// Inflate the layout for this fragment
+        ((MainActivity) getActivity()).setActionBarTitle("Register");
+        return inflater.inflate(R.layout.fragment_register, container, false);
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -47,7 +45,6 @@ public class RegisterFragment extends Fragment {
         password = view.findViewById(R.id.RegisterPassword);
         userlname = view.findViewById(R.id.RegisterLUser);
         phone = view.findViewById(R.id.RegisterNumber);
-        ///Button Nav Back to Login Fragment
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,7 +52,7 @@ public class RegisterFragment extends Fragment {
                         .navigate(R.id.action_registerFragment_to_loginFragment);
             }
         });
-        ///Button executing Register
+
         RegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,13 +63,10 @@ public class RegisterFragment extends Fragment {
 
     }
 
-
-    /// \brief Api usage
-/// \details Connecting to API Checking Data , Checking if user Already exist if not Inserting Into Data base new User
     public class Register extends AsyncTask<String, String, String> {
         String z = "";
 
-        Boolean isSuccess = false; /// isSuccess Boolean
+        Boolean isSuccess = false;
 
         @Override
         protected void onPreExecute() {
@@ -80,13 +74,13 @@ public class RegisterFragment extends Fragment {
 
         }
 
-        /// \brief Nav to login fragment if isSuccess Return True
+
         @Override
         protected void onPostExecute(String s) {
-            Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show(); ///Toast if isSuccess = false
+            Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
             if (isSuccess) {
-                Toast.makeText(getActivity(), "Login Successfull", Toast.LENGTH_LONG).show(); ///Toast if isSuccess = true
-                NavHostFragment.findNavController(RegisterFragment.this)   /// Nav to Login Fragment
+                Toast.makeText(getActivity(), "Login Successfull", Toast.LENGTH_LONG).show();
+                NavHostFragment.findNavController(RegisterFragment.this)
                         .navigate(R.id.action_registerFragment_to_loginFragment);
             }
         }
@@ -94,23 +88,23 @@ public class RegisterFragment extends Fragment {
         @RequiresApi(api = Build.VERSION_CODES.KITKAT)
         @Override
         protected String doInBackground(String... params) {
-            String userfname = RegisterFragment.this.userfname.getText().toString(); ///Getting Data from TextFields
-            String userlname = RegisterFragment.this.userlname.getText().toString();    ///Getting Data from TextFields
-            String password = RegisterFragment.this.password.getText().toString();  ///Getting Data from TextFields
-            String phone = RegisterFragment.this.phone.getText().toString();    ///Getting Data from TextFields
-            DataValidation dataValidation = new DataValidation();   /// DataValidation object
-            dataValidation.setRFname(userfname);    /// DataValidation setting  setRFname
-            dataValidation.setRLname(userlname);    /// DataValidation setting  setRLname
-            dataValidation.setRPassword(password);  /// DataValidation setting  setRPassword
-            if (userfname.trim().equals("") || userlname.trim().equals("") || password.trim().equals("") || phone.trim().equals(""))  /// Checking if TextFields are not empty
+            String userfname = RegisterFragment.this.userfname.getText().toString();
+            String userlname = RegisterFragment.this.userlname.getText().toString();
+            String password = RegisterFragment.this.password.getText().toString();
+            String phone = RegisterFragment.this.phone.getText().toString();
+            DataValidation dataValidation = new DataValidation();
+            dataValidation.setRFname(userfname);
+            dataValidation.setRLname(userlname);
+            dataValidation.setRPassword(password);
+            if (userfname.trim().equals("") || userlname.trim().equals("") || password.trim().equals("") || phone.trim().equals(""))
             {
-                z = "Please enter Data"; ///Setting String that will be used for Toast
-                /// Calling Regular Expression methods if data are valid
-            } else if (!dataValidation.RegisterDataCheck())   /// Calling Regular Expression methods
+                z = "Please enter Data";
+
+            } else if (!dataValidation.RegisterDataCheck())
             {
-                z = "Please enter Valid Data"; ///Setting String that will be used for Toast
+                z = "Please enter Valid Data";
             } else {
-                ///Connecting Api and Inserting User TextFields Data into Data base
+
                 String jsonString = "{\"userfname\":\"" + userfname + "\",\"userlname\":\"" + userlname + "\",\"password\":\"" + password + "\",\"number\":\"" + phone + "\"}";
                 URL url = null;
                 try {
@@ -128,20 +122,20 @@ public class RegisterFragment extends Fragment {
                 try (Response res = client.newCall(request).execute()) {
                     String content = res.body().string();
                     if (res.isSuccessful()) {
-                        z = "Welcome";  ///Handling Response Codes that are not successful
-                        isSuccess = true;  /// isSuccess Boolean true if Api respond with good code
+                        z = "Welcome";
+                        isSuccess = true;
                     } else
 
-                        switch (content) ///Handling Response Codes that are not successful
+                        switch (content)
                         {
                             case "Conflict":
-                                z = "User already exist"; ///Setting String that will be used for Toast
+                                z = "User already exist";
                                 break;
                             case "Internal Server Error":
-                                z = "Something went wrong"; ///Setting String that will be used for Toast
+                                z = "Something went wrong";
                                 break;
                             default:
-                                z = "Try again Later"; ///Setting String that will be used for Toast
+                                z = "Try again Later";
                                 break;
                         }
 
@@ -153,7 +147,7 @@ public class RegisterFragment extends Fragment {
             }
 
 
-            return z;  /// returning String Value to Toast
+            return z;
         }
 
 
